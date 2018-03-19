@@ -1,6 +1,120 @@
 /*
  * Create a list that holds all of your cards
  */
+ // jQuery shortcut selectors 
+// Skróty do jQuery
+const fieldGame = document.querySelector('.container');
+
+const scorePanel = document.querySelector('.score-panel');
+const listOfCard = document.querySelectorAll('.fa-star');
+//const rating = $('.fa-star');
+const moves = document.querySelector('.moves');
+const timer = document.querySelector('.timer');
+const restart = document.querySelector('.restart');
+const deck = document.querySelector('.deck');
+
+
+// List of all cards 
+let cardDesk = [
+    'fa-diamond',
+    'fa-diamond',
+    'fa-paper-plane-o',
+    'fa-paper-plane-o',
+    'fa-anchor',
+    'fa-anchor', 
+    'fa-bolt',
+    'fa-bolt', 
+    'fa-cube',
+    'fa-cube',
+    'fa-anchor',
+    'fa-anchor',  
+    'fa-leaf',
+    'fa-leaf',
+    'fa-bicycle',
+    'fa-bicycle'
+];
+
+const numberOfCard = cardDesk.length;
+//console.log(restart, numberOfCard);
+//console.dir(listOfCard);
+//console.dir(cardDesk);
+
+//array from cards sort with mathRandom (Fisher–Yates Shuffle)
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
+console.log(shuffle(cardDesk));
+
+//push className to index.HTML
+function changeClassNameOfCard(array){
+    let changeCardElement = Array.from(deck.children);
+    for (let i = 0; i < changeCardElement.length; i++) {
+     console.log(changeCardElement[i]);
+   }
+}
+
+changeClassNameOfCard(cardDesk);
+
+
+
+//document.addEventListener('DOMContentLoaded',(e)=>{
+ 
+    
+    
+  
+    let startTimer = function(event){
+
+    let pressRestart = event.target.parentNode.parentNode;
+    let restart = document.querySelector('.restart');
+    console.log(pressRestart);
+    //timer.innerHTML = '';
+
+    let timer = document.createElement('span');
+     timer.className = "timer";
+     //document.querySelector('.timer').innerHTML = "";
+     let listoftime = document.createElement('ul');
+     let lisOfMinutes = document.createElement('li');
+     let toogleDot = document.createElement('li');
+     let listOfSecunds = document.createElement('li');
+      
+     timer.appendChild(listoftime);
+     listoftime.appendChild(lisOfMinutes);
+     listoftime.appendChild(toogleDot);
+     listoftime.appendChild(listOfSecunds);
+     
+     listoftime.style.display = "inline-block";
+     lisOfMinutes.className = 'minutes';
+     toogleDot.className = 'dot';
+     listOfSecunds.className = 'secunds';
+
+     toogleDot.innerHTML = ":";
+     lisOfMinutes.innerHTML = "00";
+     listOfSecunds.innerHTML = "00";
+     console.log(timer);
+
+         if (document.querySelector('.timer')=== null) {
+            scorePanel.insertBefore(timer,restart);
+        }
+
+    restart.addEventListener('click', startTimer);
+
+    
+        }
+   //}
 
 
 /*
@@ -11,7 +125,7 @@
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+/*function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
