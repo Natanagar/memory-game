@@ -8,6 +8,7 @@ const moves = document.querySelector('.moves');
 const timer = document.querySelector('.timer');
 const restart = document.querySelector('.restart');
 const deck = document.querySelector('.deck');
+let deckCards = [];
 
 
 // List of all cards 
@@ -56,11 +57,11 @@ function shuffle(array) {
 function changeClassNameOfCard(array, elem = cardDesk){
 	shuffle(cardDesk);
     let changeCardElement = Array.from(deck.children);
-    console.log(cardDesk);
+    //console.log(cardDesk);
     	for(let i=0; i<changeCardElement.length; i++){
     	changeCardElement[i].firstElementChild.setAttribute('class', `${cardDesk[i]}`);
     	//changeCardElement[i].firstElementChild.className(`${changeCardElement[i]}`);
-    	console.log(changeCardElement[i].firstElementChild);
+    	//console.log(changeCardElement[i].firstElementChild);
     }	
 	
 }
@@ -83,20 +84,35 @@ document.addEventListener('DOMContentLoaded',(e) => {
     changeClassNameOfCard(elem = cardDesk);
    }
 
-   //open and show card
-   let openCard = function(e, elem = deck){
-    event.target.classList.add('open');
-    event.target.classList.add('show');
-   }
 
-   //compare two cards
-   let compareCards = function(elements){
-    if(two elements have the same class value){
-        add class 'match'
+
+   //open show and compare two cards
+   let compareCards = function(elements = deck.children, array = deckCards){
+    
+    let showElement = event.target;
+    showElement.classList.add('open');
+    showElement.classList.add('show');
+    let targetCard = showElement.firstElementChild.getAttribute('class');
+    //console.log(targetCard);
+    deckCards.push(targetCard);
+    //console.log(deckCards, deckCards.length);
+    
+     //compare two values card 
+     let compareTwoCards = function(array = deckCards){
+        console.log(deckCards);
+        if (deckCards.length === 1) {
+          let value1 = deckCards[0].getAttribute('class');
+          let value2 = deckCards[1].getAttribute('class');
+            if(value1 === value2) {
+                console.log('You are win!');
+            }  else { 
+                console.log('You are won!');
+            }    
+         }
+        }();   
     }
-   }
 
-   deck.addEventListener('click', openCard);
+   deck.addEventListener('click', compareCards);
    restart.addEventListener('click', shuffleDeck);
 });
 
