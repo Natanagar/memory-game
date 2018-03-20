@@ -1,8 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
- // jQuery shortcut selectors 
-// Skróty do jQuery
+// Lists of all const and variable;
 const fieldGame = document.querySelector('.container');
 
 const scorePanel = document.querySelector('.score-panel');
@@ -16,28 +12,26 @@ const deck = document.querySelector('.deck');
 
 // List of all cards 
 let cardDesk = [
-    'fa-diamond',
-    'fa-diamond',
-    'fa-paper-plane-o',
-    'fa-paper-plane-o',
-    'fa-anchor',
-    'fa-anchor', 
-    'fa-bolt',
-    'fa-bolt', 
-    'fa-cube',
-    'fa-cube',
-    'fa-anchor',
-    'fa-anchor',  
-    'fa-leaf',
-    'fa-leaf',
-    'fa-bicycle',
-    'fa-bicycle'
+    'fa fa-diamond',
+    'fa fa-diamond',
+    'fa fa-paper-plane-o',
+    'fa fa-paper-plane-o',
+    'fa fa-anchor',
+    'fa fa-anchor', 
+    'fa fa-bolt',
+    'fa fa-bolt', 
+    'fa fa-cube',
+    'fa fa-cube',
+    'fa fa-anchor',
+    'fa fa-anchor',  
+    'fa fa-leaf',
+    'fa fa-leaf',
+    'fa fa-bicycle',
+    'fa fa-bicycle'
 ];
 
 const numberOfCard = cardDesk.length;
-//console.log(restart, numberOfCard);
-//console.dir(listOfCard);
-//console.dir(cardDesk);
+
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
 function shuffle(array) {
@@ -57,25 +51,57 @@ function shuffle(array) {
 
   return array;
 }
-console.log(shuffle(cardDesk));
 
 //push className to index.HTML
-function changeClassNameOfCard(array){
+function changeClassNameOfCard(array, elem = cardDesk){
+	shuffle(cardDesk);
     let changeCardElement = Array.from(deck.children);
-    for (let i = 0; i < changeCardElement.length; i++) {
-     console.log(changeCardElement[i]);
-   }
+    console.log(cardDesk);
+    	for(let i=0; i<changeCardElement.length; i++){
+    	changeCardElement[i].firstElementChild.setAttribute('class', `${cardDesk[i]}`);
+    	//changeCardElement[i].firstElementChild.className(`${changeCardElement[i]}`);
+    	console.log(changeCardElement[i].firstElementChild);
+    }	
+	
 }
 
 changeClassNameOfCard(cardDesk);
 
 
+document.addEventListener('DOMContentLoaded',(e) => {
+  //delete classes after reload
+  let listOfTheSameCard = Array.from(document.querySelectorAll('.match'));    
+   for(let i=0; i<listOfTheSameCard.length;i++){
+    listOfTheSameCard[i].classList.remove('match');
+   } 
+   document.querySelector('.open').classList.remove('open');
+   document.querySelector('.show').classList.remove('show');
 
-//document.addEventListener('DOMContentLoaded',(e)=>{
- 
-    
-    
-  
+
+   //after restart shuffle deck of card
+   let shuffleDeck = function(e, elem = cardDesk){
+    changeClassNameOfCard(elem = cardDesk);
+   }
+
+   //open and show card
+   let openCard = function(e, elem = deck){
+    event.target.classList.add('open');
+    event.target.classList.add('show');
+   }
+
+   //compare two cards
+   let compareCards = function(elements){
+    if(two elements have the same class value){
+        add class 'match'
+    }
+   }
+
+   deck.addEventListener('click', openCard);
+   restart.addEventListener('click', shuffleDeck);
+});
+
+	
+  /*
     let startTimer = function(event){
 
     let pressRestart = event.target.parentNode.parentNode;
@@ -107,15 +133,19 @@ changeClassNameOfCard(cardDesk);
      console.log(timer);
 
          if (document.querySelector('.timer')=== null) {
-            scorePanel.insertBefore(timer,restart);
+            scorePanel.insertBefore(timer, restart);
         }
 
-    restart.addEventListener('click', startTimer);
+ 
 
-    
-        }
-   //}
 
+
+
+ 	restart.addEventListener('click', startTimer);
+
+    	}
+	}
+*/
 
 /*
  * Display the cards on the page
@@ -124,20 +154,6 @@ changeClassNameOfCard(cardDesk);
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-/*function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
 
 
 /*
