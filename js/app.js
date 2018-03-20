@@ -100,13 +100,16 @@ document.addEventListener('DOMContentLoaded',(e) => {
      //compare two values card 
      let compareTwoCards = function(array = deckCards){
         console.log(deckCards);
-        if (deckCards.length === 1) {
-          let value1 = deckCards[0].getAttribute('class');
-          let value2 = deckCards[1].getAttribute('class');
+        if (deckCards.length === 2) {
+          let value1 = `${deckCards[0]}`;
+          let value2 = `${deckCards[1]}`;
             if(value1 === value2) {
                 console.log('You are win!');
+//delete open and show classes and add match
+
             }  else { 
-                console.log('You are won!');
+                console.log('You are lost!');
+//delete classes open and show from last element
             }    
          }
         }();   
