@@ -131,12 +131,11 @@ console.log(valueCards,openCards);
               let compareTwoCards = function(array = valueCards){
                 if (`${valueCards[0]}`=== `${valueCards[1]}`) {
                   console.log('You are win!');
-                  delete valueCards[0];
-                  delete valueCards[1];
+                  valueCards=[];
                   sameCard();
                 } else {
                   console.log('You are lost!');
-                  delete valueCards[0];
+                  valueCards=[];
                   differentCards();
                 }
 

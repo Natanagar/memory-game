@@ -12,20 +12,20 @@ let valueCards = [];
 let openCards =[];
 
 
-// List of all cards 
+// List of all cards
 let cardDesk = [
     'fa fa-diamond',
     'fa fa-diamond',
     'fa fa-paper-plane-o',
     'fa fa-paper-plane-o',
     'fa fa-anchor',
-    'fa fa-anchor', 
+    'fa fa-anchor',
     'fa fa-bolt',
-    'fa fa-bolt', 
+    'fa fa-bolt',
     'fa fa-cube',
     'fa fa-cube',
     'fa fa-anchor',
-    'fa fa-anchor',  
+    'fa fa-anchor',
     'fa fa-leaf',
     'fa fa-leaf',
     'fa fa-bicycle',
@@ -33,6 +33,7 @@ let cardDesk = [
 ];
 
 const numberOfCard = cardDesk.length;
+
 
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
@@ -56,6 +57,7 @@ function shuffle(array) {
 
 //push className to index.HTML
 function changeClassNameOfCard(array, elem = cardDesk){
+  deleteClasses();
 	shuffle(cardDesk);
     let changeCardElement = Array.from(deck.children);
     //console.log(cardDesk);
@@ -63,20 +65,20 @@ function changeClassNameOfCard(array, elem = cardDesk){
     	changeCardElement[i].firstElementChild.setAttribute('class', `${cardDesk[i]}`);
     	//changeCardElement[i].firstElementChild.className(`${changeCardElement[i]}`);
     	//console.log(changeCardElement[i].firstElementChild);
-    }	
-	
+    }
+
 }
 
 changeClassNameOfCard(cardDesk);
 
 
 document.addEventListener('DOMContentLoaded',(e) => {
-            
+
             //delete classes after reload
-            let listOfTheSameCard = Array.from(document.querySelectorAll('.match'));    
+            let listOfTheSameCard = Array.from(document.querySelectorAll('.match'));
              for(let i=0; i<listOfTheSameCard.length;i++){
               listOfTheSameCard[i].classList.remove('match');
-             } 
+             }
               document.querySelector('.open').classList.remove('open');
               document.querySelector('.show').classList.remove('show');
 
@@ -84,6 +86,7 @@ document.addEventListener('DOMContentLoaded',(e) => {
                //after restart shuffle deck of card
                let shuffleDeck = function(e, elem = cardDesk){
                 changeClassNameOfCard(elem = cardDesk);
+
                }
 
                //if we have a two same cards
@@ -102,7 +105,7 @@ document.addEventListener('DOMContentLoaded',(e) => {
                 openCards[1].classList.remove('show');
                }
 
-   
+
 
            //open show and compare two cards
            let openTwoCards = function(elements = deck.children, array = valueCards){
@@ -110,16 +113,16 @@ document.addEventListener('DOMContentLoaded',(e) => {
             let showElement = event.target;
             showElement.classList.add('open');
             showElement.classList.add('show');
-          
-            //add elements to array (elements and value of cards)  
+
+            //add elements to array (elements and value of cards)
             openCards.push(showElement);
             let targetCard = showElement.firstElementChild.getAttribute('class');
             valueCards.push(targetCard);
             console.log(valueCards,openCards);
-            
+
             //if we have two cards
             if (valueCards.length === 2) {
-              //compare two values card 
+              //compare two values card
              let compareTwoCards = function(array = valueCards){
                 if (`${valueCards[0]}`=== `${valueCards[1]}`) {
                     console.log('You are win!');
@@ -131,7 +134,7 @@ document.addEventListener('DOMContentLoaded',(e) => {
                     delete valueCards[0];
                     differentCards();
                 }
-               
+
               }();
         }
     }
@@ -140,7 +143,7 @@ document.addEventListener('DOMContentLoaded',(e) => {
    restart.addEventListener('click', shuffleDeck);
 });
 
-	
+
   /*
     let startTimer = function(event){
 
@@ -156,12 +159,12 @@ document.addEventListener('DOMContentLoaded',(e) => {
      let lisOfMinutes = document.createElement('li');
      let toogleDot = document.createElement('li');
      let listOfSecunds = document.createElement('li');
-      
+
      timer.appendChild(listoftime);
      listoftime.appendChild(lisOfMinutes);
      listoftime.appendChild(toogleDot);
      listoftime.appendChild(listOfSecunds);
-     
+
      listoftime.style.display = "inline-block";
      lisOfMinutes.className = 'minutes';
      toogleDot.className = 'dot';
@@ -176,7 +179,7 @@ document.addEventListener('DOMContentLoaded',(e) => {
             scorePanel.insertBefore(timer, restart);
         }
 
- 
+
 
 
 
