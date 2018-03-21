@@ -8,7 +8,8 @@ const moves = document.querySelector('.moves');
 const timer = document.querySelector('.timer');
 const restart = document.querySelector('.restart');
 const deck = document.querySelector('.deck');
-let deckCards = [];
+let valueCards = [];
+let openCards =[];
 
 
 // List of all cards 
@@ -70,52 +71,72 @@ changeClassNameOfCard(cardDesk);
 
 
 document.addEventListener('DOMContentLoaded',(e) => {
-  //delete classes after reload
-  let listOfTheSameCard = Array.from(document.querySelectorAll('.match'));    
-   for(let i=0; i<listOfTheSameCard.length;i++){
-    listOfTheSameCard[i].classList.remove('match');
-   } 
-   document.querySelector('.open').classList.remove('open');
-   document.querySelector('.show').classList.remove('show');
+            
+            //delete classes after reload
+            let listOfTheSameCard = Array.from(document.querySelectorAll('.match'));    
+             for(let i=0; i<listOfTheSameCard.length;i++){
+              listOfTheSameCard[i].classList.remove('match');
+             } 
+              document.querySelector('.open').classList.remove('open');
+              document.querySelector('.show').classList.remove('show');
 
 
-   //after restart shuffle deck of card
-   let shuffleDeck = function(e, elem = cardDesk){
-    changeClassNameOfCard(elem = cardDesk);
-   }
+               //after restart shuffle deck of card
+               let shuffleDeck = function(e, elem = cardDesk){
+                changeClassNameOfCard(elem = cardDesk);
+               }
 
+               //if we have a two same cards
+               let sameCard = function(array = openCards){
+                console.log(openCards);
+                for (let i = 0; i<openCards.length; i++) {
+                  openCards[i].classList.remove('open');
+                  openCards[i].classList.add('match');
+                }
+               }
 
+               //if we have a two different cards
+               let differentCards = function(array = openCards){
+                console.log(openCards);
+                openCards[1].classList.remove('open');
+                openCards[1].classList.remove('show');
+               }
 
-   //open show and compare two cards
-   let compareCards = function(elements = deck.children, array = deckCards){
-    
-    let showElement = event.target;
-    showElement.classList.add('open');
-    showElement.classList.add('show');
-    let targetCard = showElement.firstElementChild.getAttribute('class');
-    //console.log(targetCard);
-    deckCards.push(targetCard);
-    //console.log(deckCards, deckCards.length);
-    
-     //compare two values card 
-     let compareTwoCards = function(array = deckCards){
-        console.log(deckCards);
-        if (deckCards.length === 2) {
-          let value1 = `${deckCards[0]}`;
-          let value2 = `${deckCards[1]}`;
-            if(value1 === value2) {
-                console.log('You are win!');
-//delete open and show classes and add match
+   
 
-            }  else { 
-                console.log('You are lost!');
-//delete classes open and show from last element
-            }    
-         }
-        }();   
+           //open show and compare two cards
+           let openTwoCards = function(elements = deck.children, array = valueCards){
+            //add class .open and .show
+            let showElement = event.target;
+            showElement.classList.add('open');
+            showElement.classList.add('show');
+          
+            //add elements to array (elements and value of cards)  
+            openCards.push(showElement);
+            let targetCard = showElement.firstElementChild.getAttribute('class');
+            valueCards.push(targetCard);
+            console.log(valueCards,openCards);
+            
+            //if we have two cards
+            if (valueCards.length === 2) {
+              //compare two values card 
+             let compareTwoCards = function(array = valueCards){
+                if (`${valueCards[0]}`=== `${valueCards[1]}`) {
+                    console.log('You are win!');
+                    delete valueCards[0];
+                    delete valueCards[1];
+                    sameCard();
+                } else {
+                    console.log('You are lost!');
+                    delete valueCards[0];
+                    differentCards();
+                }
+               
+              }();
+        }
     }
 
-   deck.addEventListener('click', compareCards);
+   deck.addEventListener('click', openTwoCards);
    restart.addEventListener('click', shuffleDeck);
 });
 
