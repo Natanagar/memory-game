@@ -92,7 +92,8 @@ console.log(openCards);
 for (let i = 0; i<openCards.length; i++) {
   openCards[i].classList.remove('open');
   openCards[i].classList.add('off','match');
-
+  //delete all elements from elements array;
+  openCards=[];
   }
 }
 
@@ -101,7 +102,8 @@ let differentCards = function(array = openCards){
   console.log(openCards);
   openCards[0].classList.remove('open', 'show');
   openCards[1].classList.remove('open', 'show');
-
+   //delete all elements from elements array;
+  openCards=[];
 }
 
 //after restart shuffle deck of card
