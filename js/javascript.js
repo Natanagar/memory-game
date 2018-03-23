@@ -110,13 +110,27 @@ let differentCards = function(array = openCards){
 //after restart shuffle deck of card
 let shuffleDeck = function(e, elem = cardDesk){
 changeClassNameOfCard(elem = cardDesk);
-let hideCards = function(deck){
-  document.querySelector('.open').classList.remove('open');
-  document.querySelector('.show').classList.remove('show');
+
+let hideCards = function(elements){
+  const deck = Array.from(document.querySelector('.deck').children);
+  //console.log(deck);
+  for(card of deck){
+    card.classList.remove('open');
+    card.classList.remove('show');
+  }
+
+
   let winCards = Array.from(document.querySelectorAll('.match'));
   for(card of winCards){
   card.classList.remove('match');
   }
+
+  //document.querySelector('.open').classList.remove('open');
+  //document.querySelector('.show').classList.remove('show');
+  //let winCards = Array.from(document.querySelectorAll('.match'));
+  //for(card of winCards){
+  //card.classList.remove('match');
+  //}
 
 }();
 }
