@@ -91,18 +91,17 @@ let sameCard = function(array = openCards){
 console.log(openCards);
 for (let i = 0; i<openCards.length; i++) {
   openCards[i].classList.remove('open');
-  openCards[i].classList.add('match');
-  openCards[i].classList.add('off');
+  openCards[i].classList.add('off','match');
+
   }
 }
 
 //if we have a two different cards
 let differentCards = function(array = openCards){
   console.log(openCards);
-  openCards[0].classList.remove('open');
-  openCards[0].classList.remove('show');
-  openCards[1].classList.remove('open');
-  openCards[1].classList.remove('show');
+  openCards[0].classList.remove('open', 'show');
+  openCards[1].classList.remove('open', 'show');
+
 }
 
 //after restart shuffle deck of card
