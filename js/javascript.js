@@ -11,6 +11,8 @@ const deck = document.querySelector('.deck');
 //empties arrays for elements and value of card
 let valueCards = [];
 let openCards =[];
+counter = 0;
+
 
 
 // List of all cards
@@ -75,6 +77,7 @@ changeClassNameOfCard(cardDesk);
 
 
 document.addEventListener('DOMContentLoaded',(e) => {
+
 //delete all additional classes
 let hideCards = function(elements){
   document.querySelector('.open').classList.remove('open');
@@ -123,16 +126,8 @@ let hideCards = function(elements){
   let winCards = Array.from(document.querySelectorAll('.match'));
   for(card of winCards){
   card.classList.remove('match');
-  }
-
-  //document.querySelector('.open').classList.remove('open');
-  //document.querySelector('.show').classList.remove('show');
-  //let winCards = Array.from(document.querySelectorAll('.match'));
-  //for(card of winCards){
-  //card.classList.remove('match');
-  //}
-
-}();
+        }
+  }();
 }
 
 // listen deck and comparing two cards
@@ -144,11 +139,14 @@ showCard.classList.add('open');
 showCard.classList.add('show');
 
 //add function callback (rating)
-counter = 0;
-let counterFunction = function(){
-  counter++;
 
-}
+let counterFunction = function(elem = moves){
+  console.log(counter);
+  counter++;
+  moves.innerHTML = counter;
+  //return counter;
+
+}();
 
 //add elements to array (elements and value of cards)
 openCards.push(showCard);
