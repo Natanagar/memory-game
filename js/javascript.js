@@ -119,6 +119,8 @@ let showCard = event.target;
 showCard.classList.add('open');
 showCard.classList.add('show');
 
+//add function callback (rating)
+
 //add elements to array (elements and value of cards)
 openCards.push(showCard);
 let targetCard = showCard.firstElementChild.getAttribute('class');
@@ -132,11 +134,11 @@ console.log(valueCards,openCards);
                 if (`${valueCards[0]}`=== `${valueCards[1]}`) {
                   console.log('You are win!');
                   valueCards=[];
-                  sameCard();
+                  setTimeout (sameCard, 2000);
                 } else {
                   console.log('You are lost!');
                   valueCards=[];
-                  differentCards();
+                  setTimeout (differentCards, 2000);
                 }
 
               }();
