@@ -90,16 +90,17 @@ let hideCards = function(elements){
 let sameCard = function(array = openCards){
 console.log(openCards);
 for (let i = 0; i<openCards.length; i++) {
+  console.log(openCards[i]);
   openCards[i].classList.remove('open');
-  openCards[i].classList.add('off','match');
+  openCards[i].classList.add('match', 'off');
   //delete all elements from elements array;
-  openCards=[];
   }
+  openCards=[];
 }
 
 //if we have a two different cards
 let differentCards = function(array = openCards){
-  console.log(openCards);
+  //console.log(openCards);
   openCards[0].classList.remove('open', 'show');
   openCards[1].classList.remove('open', 'show');
    //delete all elements from elements array;
@@ -109,7 +110,15 @@ let differentCards = function(array = openCards){
 //after restart shuffle deck of card
 let shuffleDeck = function(e, elem = cardDesk){
 changeClassNameOfCard(elem = cardDesk);
+let hideCards = function(deck){
+  document.querySelector('.open').classList.remove('open');
+  document.querySelector('.show').classList.remove('show');
+  let winCards = Array.from(document.querySelectorAll('.match'));
+  for(card of winCards){
+  card.classList.remove('match');
+  }
 
+}();
 }
 
 // listen deck and comparing two cards
@@ -121,12 +130,17 @@ showCard.classList.add('open');
 showCard.classList.add('show');
 
 //add function callback (rating)
+counter = 0;
+let counterFunction = function(){
+  counter++;
+
+}
 
 //add elements to array (elements and value of cards)
 openCards.push(showCard);
 let targetCard = showCard.firstElementChild.getAttribute('class');
 valueCards.push(targetCard);
-console.log(valueCards,openCards);
+//console.log(valueCards,openCards);
 
             //if we have two cards
             if (valueCards.length === 2) {
