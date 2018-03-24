@@ -179,3 +179,41 @@ valueCards.push(targetCard);
 deck.addEventListener('click', openTwoCards);
 restart.addEventListener('click', shuffleDeck);
 });
+
+
+/*
+    let startTimer = function(event){
+
+    let pressRestart = event.target.parentNode.parentNode;
+    let restart = document.querySelector('.restart');
+    console.log(pressRestart);
+    //timer.innerHTML = '';
+
+    let timer = document.createElement('span');
+     timer.className = "timer";
+     //document.querySelector('.timer').innerHTML = "";
+     let listoftime = document.createElement('ul');
+     let lisOfMinutes = document.createElement('li');
+     let toogleDot = document.createElement('li');
+     let listOfSecunds = document.createElement('li');
+
+     timer.appendChild(listoftime);
+     listoftime.appendChild(lisOfMinutes);
+     listoftime.appendChild(toogleDot);
+     listoftime.appendChild(listOfSecunds);
+
+     listoftime.style.display = "inline-block";
+     lisOfMinutes.className = 'minutes';
+     toogleDot.className = 'dot';
+     listOfSecunds.className = 'secunds';
+
+     toogleDot.innerHTML = ":";
+     lisOfMinutes.innerHTML = "00";
+     listOfSecunds.innerHTML = "00";
+     console.log(timer);
+
+         if (document.querySelector('.timer')=== null) {
+            scorePanel.insertBefore(timer, restart);
+        }
+
+
