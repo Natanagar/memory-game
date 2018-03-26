@@ -14,6 +14,7 @@ let valueCards = [];
 let openCards =[];
 let matchCards = [];
 let counter = 0;
+let timerId;
 
 
 
@@ -51,7 +52,7 @@ const numberOfCard = cardDesk.length;
     let i = 1;
 
 
-    let timerId = setInterval(function() {
+    timerId = setInterval(function() {
 
     if(i<10){
       timer.innerHTML=`${minutes}:0${i}`;
@@ -64,13 +65,13 @@ const numberOfCard = cardDesk.length;
     } else {
       i++;
     }
-    if (i == 15) clearInterval(timerId);
+  //if (i == 15) clearInterval(timerId);
     }, 1000);
   }
 
   startTimer();
 
-  startTimer();
+
 
 
 
@@ -197,6 +198,7 @@ let hideCards = function(elements){
   card.classList.remove('match');
         }
   }();
+  startTimer();
 }
 
 // listen deck and comparing two cards
