@@ -8,10 +8,12 @@ const moves = document.querySelector('.moves');
 const timer = document.querySelector('.timer');
 const restart = document.querySelector('.restart');
 const deck = document.querySelector('.deck');
+const stars = document.querySelector('.stars');
 //empties arrays for elements and value of card
 let valueCards = [];
 let openCards =[];
-counter = 0;
+let matchCards = [];
+let counter = 0;
 
 
 
@@ -38,6 +40,22 @@ let cardDesk = [
 //cardDesk.length
 const numberOfCard = cardDesk.length;
 
+//cursor blocking
+//let blockinCurcor = function(){
+
+//}
+
+//update counter
+let updateStars = function(elements){
+  if(counter<=15){
+    stars.firstElementChild.firstElementChild.classList = "fa fa-star-o";
+    } else if(counter>15 && counter<=25) {
+      stars.firstElementChild.nextElementSibling.firstElementChild.classList = "fa fa-star-o";
+    } else if (counter>25){
+      stars.lastElementChild.firstElementChild.classList = "fa fa-star-o";
+    }
+  }
+//}
 
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
@@ -66,8 +84,7 @@ function changeClassNameOfCard(array, elem = cardDesk){
     //console.log(cardDesk);
       for(let i=0; i<changeCardElement.length; i++){
       changeCardElement[i].firstElementChild.setAttribute('class', `${cardDesk[i]}`);
-      //changeCardElement[i].firstElementChild.className(`${changeCardElement[i]}`);
-      //console.log(changeCardElement[i].firstElementChild);
+
     }
 
 }
@@ -93,12 +110,17 @@ let hideCards = function(elements){
 let sameCard = function(array = openCards){
 console.log(openCards);
 for (let i = 0; i<openCards.length; i++) {
-  console.log(openCards[i]);
+  //console.log(openCards[i]);
   openCards[i].classList.remove('open');
   openCards[i].classList.add('match', 'off');
+  matchCards.push(openCards[i]);
+  console.log(matchCards);
   //delete all elements from elements array;
   }
   openCards=[];
+
+  //function winner;
+
 }
 
 //if we have a two different cards
@@ -141,10 +163,10 @@ showCard.classList.add('show');
 //add function callback (rating)
 
 let counterFunction = function(elem = moves){
-  console.log(counter);
   counter++;
   moves.innerHTML = counter;
-  //return counter;
+  console.log(stars, counter);
+  updateStars();
 
 }();
 
@@ -181,8 +203,8 @@ restart.addEventListener('click', shuffleDeck);
 });
 
 
-/*
-    let startTimer = function(event){
+
+/*  let startTimer = function(event){
 
     let pressRestart = event.target.parentNode.parentNode;
     let restart = document.querySelector('.restart');
@@ -214,6 +236,6 @@ restart.addEventListener('click', shuffleDeck);
 
          if (document.querySelector('.timer')=== null) {
             scorePanel.insertBefore(timer, restart);
-        }
+        }*/
 
 
