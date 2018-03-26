@@ -58,12 +58,13 @@ let updateStars = function(elements){
 
 //function winner
 let conditionOfWinnings = function(array){
-  console.log(counter);
+  //console.log(counter);
   if (array.length == 16) {
     let div = document.createElement('div');
     div.classList = "alert success"
-    div.innerHTML ="`You're winner!  for ${counter} moves and ${new Date} time`";
+    div.innerHTML =`You're winner!  Only ${counter} moves`;
     console.log(div);
+    fieldGame.appendChild(div);
   }
 }
 
@@ -126,7 +127,7 @@ for (let i = 0; i<openCards.length; i++) {
   matchCards.push(openCards[i]);
   //delete all elements from elements array;
   }
-  console.log(matchCards);
+  //console.log(matchCards);
   openCards=[];
 
   //function winner;
@@ -144,6 +145,8 @@ let differentCards = function(array = openCards){
 
 //after restart shuffle deck of card
 let shuffleDeck = function(e, elem = cardDesk){
+counter = 0;
+updateStars();
 changeClassNameOfCard(elem = cardDesk);
 
 let hideCards = function(elements){
