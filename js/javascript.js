@@ -57,12 +57,17 @@ const numberOfCard = cardDesk.length;
     } else {
       timer.innerHTML=`${minutes}:${i}`;
     }
-
-    if (i == 59) clearInterval(timerId);
-    i++;
+    if(i == 59){
+      minutes++;
+      i = 0;
+    } else {
+      i++;
+    }
+    if (i == 15) clearInterval(timerId);
     }, 1000);
   }
-  //startTimer();
+
+  startTimer();
 
 
 
@@ -79,8 +84,9 @@ let updateStars = function(elements){
 
 //function winner
 let conditionOfWinnings = function(array){
-  //console.log(counter);
+  console.log(i);
   if (array.length == 16) {
+    clearInterval(timerId);
     let div = document.createElement('div');
     div.classList = "alert success"
     div.innerHTML =`You're winner!  Only ${counter} moves`;
@@ -168,6 +174,7 @@ let differentCards = function(array = openCards){
 let shuffleDeck = function(e, elem = cardDesk){
 counter = 0;
 updateStars();
+clearInterval(timerId);
 //timer
 //startTimer();
 
@@ -193,7 +200,7 @@ let hideCards = function(elements){
 let openTwoCards = function(elements = deck.children, array = valueCards){
 
 //start timer
-startTimer();
+//startTimer();
 
 //add class .open and .show
 let showCard = event.target;
@@ -242,40 +249,5 @@ deck.addEventListener('click', openTwoCards);
 restart.addEventListener('click', shuffleDeck);
 });
 
-
-
-/*  let startTimer = function(event){
-
-    let pressRestart = event.target.parentNode.parentNode;
-    let restart = document.querySelector('.restart');
-    console.log(pressRestart);
-    //timer.innerHTML = '';
-
-    let timer = document.createElement('span');
-     timer.className = "timer";
-     //document.querySelector('.timer').innerHTML = "";
-     let listoftime = document.createElement('ul');
-     let lisOfMinutes = document.createElement('li');
-     let toogleDot = document.createElement('li');
-     let listOfSecunds = document.createElement('li');
-
-     timer.appendChild(listoftime);
-     listoftime.appendChild(lisOfMinutes);
-     listoftime.appendChild(toogleDot);
-     listoftime.appendChild(listOfSecunds);
-
-     listoftime.style.display = "inline-block";
-     lisOfMinutes.className = 'minutes';
-     toogleDot.className = 'dot';
-     listOfSecunds.className = 'secunds';
-
-     toogleDot.innerHTML = ":";
-     lisOfMinutes.innerHTML = "00";
-     listOfSecunds.innerHTML = "00";
-     console.log(timer);
-
-         if (document.querySelector('.timer')=== null) {
-            scorePanel.insertBefore(timer, restart);
-        }*/
 
 
