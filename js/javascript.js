@@ -55,7 +55,17 @@ let updateStars = function(elements){
       stars.lastElementChild.firstElementChild.classList = "fa fa-star-o";
     }
   }
-//}
+
+//function winner
+let conditionOfWinnings = function(array){
+  console.log(counter);
+  if (array.length == 16) {
+    let div = document.createElement('div');
+    div.classList = "alert success"
+    div.innerHTML ="`You're winner!  for ${counter} moves and ${new Date} time`";
+    console.log(div);
+  }
+}
 
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
@@ -108,19 +118,19 @@ let hideCards = function(elements){
 
 //if we have a two same cards
 let sameCard = function(array = openCards){
-console.log(openCards);
+//console.log(matchCards);
 for (let i = 0; i<openCards.length; i++) {
   //console.log(openCards[i]);
   openCards[i].classList.remove('open');
   openCards[i].classList.add('match', 'off');
   matchCards.push(openCards[i]);
-  console.log(matchCards);
   //delete all elements from elements array;
   }
+  console.log(matchCards);
   openCards=[];
 
   //function winner;
-
+  conditionOfWinnings(matchCards);
 }
 
 //if we have a two different cards
@@ -165,7 +175,7 @@ showCard.classList.add('show');
 let counterFunction = function(elem = moves){
   counter++;
   moves.innerHTML = counter;
-  console.log(stars, counter);
+  //console.log(stars, counter);
   updateStars();
 
 }();
