@@ -14,7 +14,7 @@ let valueCards = [];
 let openCards =[];
 let matchCards = [];
 let counter = 0;
-let timerId;
+let myTimer;
 
 
 
@@ -51,8 +51,7 @@ const numberOfCard = cardDesk.length;
     minutes = 0;
     let i = 1;
 
-
-    timerId = setInterval(function() {
+    return setInterval(function() {
 
     if(i<10){
       timer.innerHTML=`${minutes}:0${i}`;
@@ -65,14 +64,13 @@ const numberOfCard = cardDesk.length;
     } else {
       i++;
     }
-  //if (i == 15) clearInterval(timerId);
     }, 1000);
   }
 
-  startTimer();
 
-
-
+function stopTimer(aTimer) {
+  clearInterval(aTimer);
+}
 
 
 //update counter
@@ -88,12 +86,12 @@ let updateStars = function(elements){
 
 //function winner
 let conditionOfWinnings = function(array){
-  console.log(i);
+  //console.log(i);
   if (array.length == 16) {
-    clearInterval(timerId);
+    stopTimer(myTimer);
     let div = document.createElement('div');
     div.classList = "alert success"
-    div.innerHTML =`You're winner!  Only ${counter} moves`;
+    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
     console.log(div);
     fieldGame.appendChild(div);
   }
@@ -132,7 +130,7 @@ function changeClassNameOfCard(array, elem = cardDesk){
 }
 
 changeClassNameOfCard(cardDesk);
-
+myTimer = startTimer();
 
 
 document.addEventListener('DOMContentLoaded',(e) => {
@@ -178,9 +176,7 @@ let differentCards = function(array = openCards){
 let shuffleDeck = function(e, elem = cardDesk){
 counter = 0;
 updateStars();
-clearInterval(timerId);
-//timer
-//startTimer();
+stopTimer(myTimer);
 
 changeClassNameOfCard(elem = cardDesk);
 
@@ -204,16 +200,14 @@ let hideCards = function(elements){
 // listen deck and comparing two cards
 let openTwoCards = function(elements = deck.children, array = valueCards){
 
-//start timer
-//startTimer();
 
 //add class .open and .show
 let showCard = event.target;
 showCard.classList.add('open');
 showCard.classList.add('show');
 
-//add function callback (rating)
 
+//add function callback (rating)
 let counterFunction = function(elem = moves){
   counter++;
   moves.innerHTML = counter;
