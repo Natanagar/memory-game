@@ -40,10 +40,31 @@ let cardDesk = [
 //cardDesk.length
 const numberOfCard = cardDesk.length;
 
-//cursor blocking
+//function cursor blocking
 //let blockinCurcor = function(){
 
 //}
+//timer
+
+  function startTimer() {
+    minutes = 0;
+    let i = 1;
+
+
+    let timerId = setInterval(function() {
+    if(i<10){
+      timer.innerHTML=`${minutes}:0${i}`;
+    } else {
+      timer.innerHTML=`${minutes}:${i}`;
+    }
+
+    if (i == 59) clearInterval(timerId);
+    i++;
+    }, 1000);
+  }
+  //startTimer();
+
+
 
 //update counter
 let updateStars = function(elements){
@@ -147,6 +168,9 @@ let differentCards = function(array = openCards){
 let shuffleDeck = function(e, elem = cardDesk){
 counter = 0;
 updateStars();
+//timer
+//startTimer();
+
 changeClassNameOfCard(elem = cardDesk);
 
 let hideCards = function(elements){
@@ -167,6 +191,9 @@ let hideCards = function(elements){
 
 // listen deck and comparing two cards
 let openTwoCards = function(elements = deck.children, array = valueCards){
+
+//start timer
+startTimer();
 
 //add class .open and .show
 let showCard = event.target;

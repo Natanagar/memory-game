@@ -119,3 +119,7 @@ h1 {
     text-align: center;
     text-transform: uppercase;
 }
+
+.timer {
+    margin-left: 20px;
+}
