@@ -52,6 +52,7 @@ const numberOfCard = cardDesk.length;
 
 
     let timerId = setInterval(function() {
+
     if(i<10){
       timer.innerHTML=`${minutes}:0${i}`;
     } else {
@@ -66,6 +67,8 @@ const numberOfCard = cardDesk.length;
     if (i == 15) clearInterval(timerId);
     }, 1000);
   }
+
+  startTimer();
 
   startTimer();
 
