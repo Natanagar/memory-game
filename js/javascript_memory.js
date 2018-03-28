@@ -188,20 +188,7 @@ let conditionOfWinnings = function(array){
 document.addEventListener('DOMContentLoaded', (e) => {
   hideCards();
 startTimer();
-  /*startTimer(myTimer);
-  setTimeout(function() {
-     if(accessEvents == false){
-      stopTimer(myTimer);
-    }
 
-  }, 5000);
-
-  console.log(accessEvents);
-  setTimeout(() => {
-    accessEvents = false;
-    console.log(accessEvents);
-    return accessEvents;// Todo...
-  }, 2000)*/
 //restart game
 let shuffleDeck = function(e, elem = cardDesk){
   stopTimer(myTimer);
