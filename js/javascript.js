@@ -1,3 +1,4 @@
+
 // Lists of all const and variables;
 const fieldGame = document.querySelector('.container');
 
@@ -15,8 +16,7 @@ let openCards =[];
 let matchCards = [];
 let counter = 0;
 let myTimer;
-
-
+let accessEvents = true;
 
 // List of all cards
 let cardDesk = [
@@ -38,65 +38,7 @@ let cardDesk = [
 'fa fa-bicycle'
 ];
 
-//cardDesk.length
 const numberOfCard = cardDesk.length;
-
-//function cursor blocking
-//let blockinCurcor = function(){
-
-//}
-//timer
-
-  function startTimer() {
-    minutes = 0;
-    let i = 1;
-
-    return setInterval(function() {
-
-    if(i<10){
-      timer.innerHTML=`${minutes}:0${i}`;
-    } else {
-      timer.innerHTML=`${minutes}:${i}`;
-    }
-    if(i == 59){
-      minutes++;
-      i = 0;
-    } else {
-      i++;
-    }
-    }, 1000);
-  }
-
-
-function stopTimer(aTimer) {
-  clearInterval(aTimer);
-}
-
-
-//update counter
-let updateStars = function(elements){
-  if(counter<=15){
-    stars.firstElementChild.firstElementChild.classList = "fa fa-star-o";
-    } else if(counter>15 && counter<=25) {
-      stars.firstElementChild.nextElementSibling.firstElementChild.classList = "fa fa-star-o";
-    } else if (counter>25){
-      stars.lastElementChild.firstElementChild.classList = "fa fa-star-o";
-    }
-  }
-
-//function winner
-let conditionOfWinnings = function(array){
-  //console.log(i);
-  if (array.length == 16) {
-    stopTimer(myTimer);
-    let div = document.createElement('div');
-    div.classList = "alert success"
-    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
-    console.log(div);
-    fieldGame.appendChild(div);
-  }
-}
-
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
 function shuffle(array) {
@@ -130,37 +72,80 @@ function changeClassNameOfCard(array, elem = cardDesk){
 }
 
 changeClassNameOfCard(cardDesk);
-myTimer = startTimer();
+//remove open class
+let removeOpen = function(elements){
+  let openCards = document.querySelectorAll('.open');
+  for(opencard of openCards){
+    opencard.classList.remove('open');
+  }
 
-
-document.addEventListener('DOMContentLoaded',(e) => {
-
-//delete all additional classes
-let hideCards = function(elements){
-    document.querySelector('.open').classList.remove('open');
-    document.querySelector('.show').classList.remove('show');
+}
+//remove show class
+let removeShow = function(elements){
+  let removeClasses = document.querySelectorAll('.show');
+  for(removeClass of removeClasses){
+    removeClass.classList.remove('show');
+  }
+}
+//remove match class
+let removeMatch = function(elements){
     let winCards = Array.from(document.querySelectorAll('.match'));
     for(card of winCards){
     card.classList.remove('match');
     }
+}
 
-}();
-
-//if we have a two same cards
-let sameCard = function(array = openCards){
-//console.log(matchCards);
-for (let i = 0; i<openCards.length; i++) {
-  //console.log(openCards[i]);
-  openCards[i].classList.remove('open');
-  openCards[i].classList.add('match', 'off');
-  matchCards.push(openCards[i]);
-  //delete all elements from elements array;
+let removeOff = function(elements){
+  let offElements = document.querySelectorAll('.off');
+  for (offElement of offElements){
+    offElement.classList.remove('off');
   }
-  //console.log(matchCards);
-  openCards=[];
+}
+let hideCards = function(elements){
+    moves.innerHTML='0';
+    removeOpen();
+    removeShow();
+    removeMatch();
+}
+//start timer
+function startTimer() {
+    minutes = 0;
+    let i = 1;
 
-  //function winner;
-  conditionOfWinnings(matchCards);
+    myTimer = setInterval(function() {
+
+    if(i<10){
+      timer.innerHTML=`${minutes}:0${i}`;
+    } else {
+      timer.innerHTML=`${minutes}:${i}`;
+    }
+    if(i == 59){
+      minutes++;
+      i = 0;
+    } else {
+      i++;
+    }
+    }, 1000);
+  }
+
+
+//stop timer
+function stopTimer(aTimer) {
+  clearInterval(aTimer);
+}
+//inizialite timer
+//myTimer = startTimer();
+
+
+//update counter
+let updateStars = function(elements){
+  if(counter<=15){
+    stars.firstElementChild.firstElementChild.classList = "fa fa-star-o";
+    } else if(counter>15 && counter<=25) {
+      stars.firstElementChild.nextElementSibling.firstElementChild.classList = "fa fa-star-o";
+    } else if (counter>25){
+      stars.lastElementChild.firstElementChild.classList = "fa fa-star-o";
+    }
 }
 
 //if we have a two different cards
@@ -170,75 +155,100 @@ let differentCards = function(array = openCards){
   openCards[1].classList.remove('open', 'show');
    //delete all elements from elements array;
   openCards=[];
+  accessEvents = true;
 }
 
-//after restart shuffle deck of card
-let shuffleDeck = function(e, elem = cardDesk){
-counter = 0;
-updateStars();
-stopTimer(myTimer);
-
-changeClassNameOfCard(elem = cardDesk);
-
-let hideCards = function(elements){
-  const deck = Array.from(document.querySelector('.deck').children);
-  //console.log(deck);
-  for(card of deck){
-    card.classList.remove('open');
-    card.classList.remove('show');
+//if we have a two same cards
+let sameCard = function(array = openCards){
+for (let i = 0; i<openCards.length; i++) {
+    openCards[i].classList.remove('open');
+    openCards[i].classList.add('match', 'off');
+    matchCards.push(openCards[i]);
   }
+  //delete all elements from elements array;
+  openCards=[];
+  accessEvents = true;
 
-
-  let winCards = Array.from(document.querySelectorAll('.match'));
-  for(card of winCards){
-  card.classList.remove('match');
-        }
-  }();
-  startTimer();
+  //function winner;
+  conditionOfWinnings(matchCards);
 }
 
-// listen deck and comparing two cards
+let conditionOfWinnings = function(array){
+  //console.log(i);
+  if (array.length == 16) {
+    stopTimer(myTimer);
+    let div = document.createElement('div');
+    div.classList = "alert success"
+    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
+    console.log(div);
+    fieldGame.appendChild(div);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', (e) => {
+  hideCards();
+startTimer();
+
+//restart game
+let shuffleDeck = function(e, elem = cardDesk){
+  stopTimer(myTimer);
+  startTimer(myTimer);
+  console.log('Hura!');
+  moves.innerHTML = '0';
+  removeMatch();
+  removeShow();
+  removeOff();
+}
+
+
+//open two card and comparsion those value
 let openTwoCards = function(elements = deck.children, array = valueCards){
+if(accessEvents==true){
+  //add class .open and .show
+  let showCard = event.target;
+  showCard.classList.add('open');
+  showCard.classList.add('show');
 
+  //add function callback (rating)
+  let counterFunction = function(elem = moves){
+    counter++;
+    moves.innerHTML = counter;
+    //console.log(stars, counter);
+    updateStars();
 
-//add class .open and .show
-let showCard = event.target;
-showCard.classList.add('open');
-showCard.classList.add('show');
+  }();
 
-
-//add function callback (rating)
-let counterFunction = function(elem = moves){
-  counter++;
-  moves.innerHTML = counter;
-  //console.log(stars, counter);
-  updateStars();
-
-}();
-
-//add elements to array (elements and value of cards)
-openCards.push(showCard);
-let targetCard = showCard.firstElementChild.getAttribute('class');
-valueCards.push(targetCard);
-//console.log(valueCards,openCards);
-
-            //if we have two cards
-            if (valueCards.length === 2) {
-              //compare two values card
-              let compareTwoCards = function(array = valueCards){
-                if (`${valueCards[0]}`=== `${valueCards[1]}`) {
-                  console.log('You are win!');
-                  valueCards=[];
-                  setTimeout (sameCard, 2000);
-                } else {
-                  console.log('You are lost!');
-                  valueCards=[];
-                  setTimeout (differentCards, 2000);
-                }
-
-              }();
-            }
+  //add elements to array (elements and value of cards)
+  openCards.push(showCard);
+  let targetCard = showCard.firstElementChild.getAttribute('class');
+  valueCards.push(targetCard);
+         //if we have two cards
+          if (valueCards.length === 2) {
+          accessEvents = false;
+          //compare two values card
+          let compareTwoCards = function(array = valueCards){
+          if (`${valueCards[0]}`=== `${valueCards[1]}`) {
+          console.log('You win!');
+          valueCards=[];
+          setTimeout (sameCard, 1000);
+          } else {
+          console.log('You lost!');
+          valueCards=[];
+          setTimeout (differentCards, 1000);
           }
+
+      }();
+    }
+  }
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -247,6 +257,3 @@ valueCards.push(targetCard);
 deck.addEventListener('click', openTwoCards);
 restart.addEventListener('click', shuffleDeck);
 });
-
-
-
