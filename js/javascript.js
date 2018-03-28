@@ -1,4 +1,4 @@
-// Lists of all const and variable;
+// Lists of all const and variables;
 const fieldGame = document.querySelector('.container');
 
 const scorePanel = document.querySelector('.score-panel');
@@ -137,12 +137,12 @@ document.addEventListener('DOMContentLoaded',(e) => {
 
 //delete all additional classes
 let hideCards = function(elements){
-  document.querySelector('.open').classList.remove('open');
-  document.querySelector('.show').classList.remove('show');
-  let winCards = Array.from(document.querySelectorAll('.match'));
-  for(card of winCards){
-  card.classList.remove('match');
-  }
+    document.querySelector('.open').classList.remove('open');
+    document.querySelector('.show').classList.remove('show');
+    let winCards = Array.from(document.querySelectorAll('.match'));
+    for(card of winCards){
+    card.classList.remove('match');
+    }
 
 }();
 
