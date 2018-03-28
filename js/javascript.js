@@ -43,8 +43,16 @@ const numberOfCard = cardDesk.length;
 let createModalWindow = function(){
   let div = document.createElement('div');
     div.classList = "modal"
-    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
-    console.log(div);
+    let innerDiv = document.createElement('div');
+    div.appendChild(innerDiv);
+    let textModalWindow = document.createElement('div');
+    innerDiv.appendChild(textModalWindow);
+    textModalWindow.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes. If you want to play again, press x`;
+    let closeWindow = document.createElement('span');
+    let closeIcon = document.createElement('i')
+    closeIcon.classList = "fa fa-times";
+    closeWindow.appendChild(closeIcon);
+    //console.log(div);
     fieldGame.appendChild(div);
 }
 
@@ -199,6 +207,7 @@ let shuffleDeck = function(e, elem = cardDesk){
   startTimer(myTimer);
   console.log('Hura!');
   moves.innerHTML = '0';
+  counter = 0;
   removeMatch();
   removeShow();
   removeOff();
