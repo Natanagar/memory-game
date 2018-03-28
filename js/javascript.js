@@ -40,6 +40,14 @@ let cardDesk = [
 
 const numberOfCard = cardDesk.length;
 
+let createModalWindow = function(){
+  let div = document.createElement('div');
+    div.classList = "modal"
+    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
+    console.log(div);
+    fieldGame.appendChild(div);
+}
+
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
 function shuffle(array) {
   var m = array.length, t, i;
@@ -177,11 +185,7 @@ let conditionOfWinnings = function(array){
   //console.log(i);
   if (array.length == 16) {
     stopTimer(myTimer);
-    let div = document.createElement('div');
-    div.classList = "alert success"
-    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
-    console.log(div);
-    fieldGame.appendChild(div);
+    createModalWindow();
   }
 }
 

@@ -111,7 +111,7 @@ h1 {
     pointer-events: none;
 }
 
-.success {
+.modal {
     width: 400px;
     height: 50px;
     border: 1px solid;
