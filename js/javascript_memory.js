@@ -116,6 +116,7 @@ let differentCards = function(array = openCards){
   openCards[1].classList.remove('open', 'show');
    //delete all elements from elements array;
   openCards=[];
+  accessEvents = true;
 }
 
 //if we have a two same cards
@@ -127,6 +128,7 @@ for (let i = 0; i<openCards.length; i++) {
   }
   //delete all elements from elements array;
   openCards=[];
+  accessEvents = true;
 
   //function winner;
   conditionOfWinnings(matchCards);
