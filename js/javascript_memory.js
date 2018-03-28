@@ -134,9 +134,21 @@ for (let i = 0; i<openCards.length; i++) {
   conditionOfWinnings(matchCards);
 }
 
+let conditionOfWinnings = function(array){
+  //console.log(i);
+  if (array.length == 16) {
+    stopTimer(myTimer);
+    let div = document.createElement('div');
+    div.classList = "alert success"
+    div.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes`;
+    console.log(div);
+    fieldGame.appendChild(div);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', (e) => {
   hideCards();
-
+startTimer();
   /*startTimer(myTimer);
   setTimeout(function() {
      if(accessEvents == false){
