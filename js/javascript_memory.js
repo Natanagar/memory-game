@@ -94,6 +94,13 @@ let removeMatch = function(elements){
     card.classList.remove('match');
     }
 }
+
+let removeOff = function(elements){
+  let offElements = document.querySelectorAll('.off');
+  for (offElement of offElements){
+    offElement.classList.remove('off');
+  }
+}
 let hideCards = function(elements){
     moves.innerHTML='0';
     removeOpen();
@@ -195,10 +202,19 @@ startTimer();
     console.log(accessEvents);
     return accessEvents;// Todo...
   }, 2000)*/
+//restart game
+let shuffleDeck = function(e, elem = cardDesk){
+  stopTimer(myTimer);
+  startTimer(myTimer);
+  console.log('Hura!');
+  moves.innerHTML = '0';
+  removeMatch();
+  removeShow();
+  removeOff();
+}
 
 
-
-
+//open two card and comparsion those value
 let openTwoCards = function(elements = deck.children, array = valueCards){
 if(accessEvents==true){
   //add class .open and .show
@@ -237,14 +253,6 @@ if(accessEvents==true){
       }();
     }
   }
-}
-let shuffleDeck = function(e, elem = cardDesk){
-  stopTimer(myTimer);
-  startTimer(myTimer);
-  console.log('Hura!');
-  moves.innerHTML = '0';
-  removeMatch();
-  removeShow();
 }
 
 
