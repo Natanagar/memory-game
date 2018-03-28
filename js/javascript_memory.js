@@ -16,6 +16,7 @@ let openCards =[];
 let matchCards = [];
 let counter = 0;
 let myTimer;
+let accessEvents = true;
 
 // List of all cards
 let cardDesk = [
@@ -67,8 +68,61 @@ let hideCards = function(elements){
     card.classList.remove('match');
     }
 }
+//start timer
+function startTimer() {
+    minutes = 0;
+    let i = 1;
+
+    myTimer = setInterval(function() {
+
+    if(i<10){
+      timer.innerHTML=`${minutes}:0${i}`;
+    } else {
+      timer.innerHTML=`${minutes}:${i}`;
+    }
+    if(i == 59){
+      minutes++;
+      i = 0;
+    } else {
+      i++;
+    }
+    }, 1000);
+  }
+
+
+//stop timer
+function stopTimer(aTimer) {
+  clearInterval(aTimer);
+}
+//inizialite timer
+//myTimer = startTimer();
+
+
 document.addEventListener('DOMContentLoaded', (e) => {
   hideCards();
+
+  startTimer(myTimer);
+  setTimeout(function() {
+     if(accessEvents == false){
+      stopTimer(myTimer);
+    }
+
+  }, 5000);
+
+  console.log(accessEvents);
+  setTimeout(() => {
+    accessEvents = false;
+    console.log(accessEvents);
+    return accessEvents;// Todo...
+  }, 2000)
+
+
+
+
+let openTwoCards = function(e){
+  console.log('Hura!');
+
+}
 
 
 
