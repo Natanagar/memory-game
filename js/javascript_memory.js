@@ -227,11 +227,11 @@ if(accessEvents==true){
           if (`${valueCards[0]}`=== `${valueCards[1]}`) {
           console.log('You win!');
           valueCards=[];
-          setTimeout (sameCard, 2000);
+          setTimeout (sameCard, 1000);
           } else {
           console.log('You lost!');
           valueCards=[];
-          setTimeout (differentCards, 2000);
+          setTimeout (differentCards, 1000);
           }
 
       }();
@@ -239,6 +239,8 @@ if(accessEvents==true){
   }
 }
 let shuffleDeck = function(e, elem = cardDesk){
+  stopTimer(myTimer);
+  startTimer(myTimer);
   console.log('Hura!');
   moves.innerHTML = '0';
   removeMatch();
