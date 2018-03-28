@@ -59,14 +59,46 @@ function shuffle(array) {
   return array;
 }
 
-let hideCards = function(elements){
-    moves.innerHTML='0';
-    document.querySelector('.open').classList.remove('open');
-    document.querySelector('.show').classList.remove('show');
+//push className to index.HTML
+function changeClassNameOfCard(array, elem = cardDesk){
+  shuffle(cardDesk);
+    let changeCardElement = Array.from(deck.children);
+    //console.log(cardDesk);
+      for(let i=0; i<changeCardElement.length; i++){
+      changeCardElement[i].firstElementChild.setAttribute('class', `${cardDesk[i]}`);
+
+    }
+
+}
+
+changeClassNameOfCard(cardDesk);
+//remove open class
+let removeOpen = function(elements){
+  let openCards = document.querySelectorAll('.open');
+  for(opencard of openCards){
+    opencard.classList.remove('open');
+  }
+
+}
+//remove show class
+let removeShow = function(elements){
+  let removeClasses = document.querySelectorAll('.show');
+  for(removeClass of removeClasses){
+    removeClass.classList.remove('show');
+  }
+}
+//remove match class
+let removeMatch = function(elements){
     let winCards = Array.from(document.querySelectorAll('.match'));
     for(card of winCards){
     card.classList.remove('match');
     }
+}
+let hideCards = function(elements){
+    moves.innerHTML='0';
+    removeOpen();
+    removeShow();
+    removeMatch();
 }
 //start timer
 function startTimer() {
@@ -190,7 +222,6 @@ if(accessEvents==true){
          //if we have two cards
           if (valueCards.length === 2) {
           accessEvents = false;
-          console.log(accessEvents);
           //compare two values card
           let compareTwoCards = function(array = valueCards){
           if (`${valueCards[0]}`=== `${valueCards[1]}`) {
@@ -207,7 +238,12 @@ if(accessEvents==true){
     }
   }
 }
-
+let shuffleDeck = function(e, elem = cardDesk){
+  console.log('Hura!');
+  moves.innerHTML = '0';
+  removeMatch();
+  removeShow();
+}
 
 
 
@@ -222,4 +258,5 @@ if(accessEvents==true){
 
 
 deck.addEventListener('click', openTwoCards);
+restart.addEventListener('click', shuffleDeck);
 });
