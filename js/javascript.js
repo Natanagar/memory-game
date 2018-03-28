@@ -149,19 +149,23 @@ function startTimer() {
 function stopTimer(aTimer) {
   clearInterval(aTimer);
 }
-//inizialite timer
-//myTimer = startTimer();
 
 
 //update counter
 let updateStars = function(elements){
   if(counter<=15){
-    stars.firstElementChild.firstElementChild.classList = "fa fa-star-o";
+    stars.firstElementChild.firstElementChild.style.display="block";
+    stars.firstElementChild.nextElementSibling.firstElementChild.style.display = "none";
+    stars.lastElementChild.firstElementChild.style.display="none";
     } else if(counter>15 && counter<=25) {
-      stars.firstElementChild.nextElementSibling.firstElementChild.classList = "fa fa-star-o";
+      stars.firstElementChild.firstElementChild.style.display="block";
+      stars.firstElementChild.nextElementSibling.firstElementChild.style.display = "block";
+      stars.lastElementChild.firstElementChild.style.display = "none";
     } else if (counter>25){
-      stars.lastElementChild.firstElementChild.classList = "fa fa-star-o";
-    }
+       stars.firstElementChild.firstElementChild.style.display="block";
+      stars.firstElementChild.nextElementSibling.firstElementChild.style.display = "block";
+      stars.lastElementChild.firstElementChild.style.display = "block";
+  }
 }
 
 //if we have a two different cards
@@ -198,7 +202,7 @@ let conditionOfWinnings = function(array){
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
-  hideCards();
+hideCards();
 startTimer();
 
 //restart game
@@ -238,23 +242,25 @@ if(accessEvents==true){
   valueCards.push(targetCard);
          //if we have two cards
           if (valueCards.length === 2) {
-          accessEvents = false;
-          //compare two values card
-          let compareTwoCards = function(array = valueCards){
-          if (`${valueCards[0]}`=== `${valueCards[1]}`) {
-          console.log('You win!');
-          valueCards=[];
-          setTimeout (sameCard, 1000);
-          } else {
-          console.log('You lost!');
-          valueCards=[];
-          setTimeout (differentCards, 1000);
-          }
+          // access to events
+            accessEvents = false;
+            //compare two values card
+            let compareTwoCards = function(array = valueCards){
+              if (`${valueCards[0]}`=== `${valueCards[1]}`) {
+              console.log('You win!');
+              valueCards=[];
+              setTimeout (sameCard, 1000);
+              } else {
+              console.log('You lost!');
+              valueCards=[];
+              setTimeout (differentCards, 1000);
 
+              }
       }();
     }
   }
 }
+
 
 
 
