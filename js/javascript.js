@@ -198,6 +198,7 @@ let shuffleDeck = function(e, elem = cardDesk){
   removeMatch();
   removeShow();
   removeOff();
+  changeClassNameOfCard(cardDesk);
 }
 
 
