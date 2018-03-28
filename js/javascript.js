@@ -38,7 +38,7 @@ let cardDesk = [
 ];
 
 const numberOfCard = cardDesk.length;
-
+//create modal window
 let createModalWindow = function() {
   let div = document.createElement("div");
   div.classList = "modal";
@@ -56,6 +56,13 @@ let createModalWindow = function() {
   //console.log(div);
   fieldGame.appendChild(div);
 };
+
+//remove modal window
+
+let removeModal = function(element…){
+  let modalWindow = document.querySelector('.modal');
+  modalWindow.style.display = "none";
+}
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
 function shuffle(array) {

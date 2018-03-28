@@ -112,28 +112,40 @@ h1 {
 }
 
 .modal {
-    width: 90%;
-    height: 600px;
-    border: 1px solid;
-    border-radius: 5px;
-    position: fixed;
-    z-index: 9000;
-    background-color: rgba(52, 86, 81, 0.8);
-    overflow: auto;
+    /*display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-.btn{
-    display: block;
-    position: fixed;
-    float: right;    
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
-.text{
-    width: auto;
-    height: 300px;
-    text-align: center;
-    text-transform: uppercase;
-    color: white;
+.btn span{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;   
 }
-
+/*
+.modal-content{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+*/
 .timer {
     margin-left: 20px;
 }
