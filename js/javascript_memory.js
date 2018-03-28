@@ -98,10 +98,44 @@ function stopTimer(aTimer) {
 //myTimer = startTimer();
 
 
+//update counter
+let updateStars = function(elements){
+  if(counter<=15){
+    stars.firstElementChild.firstElementChild.classList = "fa fa-star-o";
+    } else if(counter>15 && counter<=25) {
+      stars.firstElementChild.nextElementSibling.firstElementChild.classList = "fa fa-star-o";
+    } else if (counter>25){
+      stars.lastElementChild.firstElementChild.classList = "fa fa-star-o";
+    }
+}
+
+//if we have a two different cards
+let differentCards = function(array = openCards){
+  //console.log(openCards);
+  openCards[0].classList.remove('open', 'show');
+  openCards[1].classList.remove('open', 'show');
+   //delete all elements from elements array;
+  openCards=[];
+}
+
+//if we have a two same cards
+let sameCard = function(array = openCards){
+for (let i = 0; i<openCards.length; i++) {
+    openCards[i].classList.remove('open');
+    openCards[i].classList.add('match', 'off');
+    matchCards.push(openCards[i]);
+  }
+  //delete all elements from elements array;
+  openCards=[];
+
+  //function winner;
+  conditionOfWinnings(matchCards);
+}
+
 document.addEventListener('DOMContentLoaded', (e) => {
   hideCards();
 
-  startTimer(myTimer);
+  /*startTimer(myTimer);
   setTimeout(function() {
      if(accessEvents == false){
       stopTimer(myTimer);
@@ -114,15 +148,56 @@ document.addEventListener('DOMContentLoaded', (e) => {
     accessEvents = false;
     console.log(accessEvents);
     return accessEvents;// Todo...
-  }, 2000)
+  }, 2000)*/
 
 
 
 
-let openTwoCards = function(e){
-  console.log('Hura!');
+let openTwoCards = function(elements = deck.children, array = valueCards){
+if(accessEvents==true){
+  //add class .open and .show
+  let showCard = event.target;
+  showCard.classList.add('open');
+  showCard.classList.add('show');
 
+  //add function callback (rating)
+  let counterFunction = function(elem = moves){
+    counter++;
+    moves.innerHTML = counter;
+    //console.log(stars, counter);
+    updateStars();
+
+  }();
+
+  //add elements to array (elements and value of cards)
+  openCards.push(showCard);
+  let targetCard = showCard.firstElementChild.getAttribute('class');
+  valueCards.push(targetCard);
+         //if we have two cards
+          if (valueCards.length === 2) {
+          accessEvents = false;
+          console.log(accessEvents);
+          //compare two values card
+          let compareTwoCards = function(array = valueCards){
+          if (`${valueCards[0]}`=== `${valueCards[1]}`) {
+          console.log('You win!');
+          valueCards=[];
+          setTimeout (sameCard, 2000);
+          } else {
+          console.log('You lost!');
+          valueCards=[];
+          setTimeout (differentCards, 2000);
+          }
+
+      }();
+    }
+  }
 }
+
+
+
+
+
 
 
 
