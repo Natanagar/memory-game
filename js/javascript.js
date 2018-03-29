@@ -185,6 +185,14 @@ function stopTimer(aTimer) {
   clearInterval(aTimer);
 }
 
+//reduction of the steps to counter
+let reduction = function(array, counter){
+  if (array[0] === array[1]){
+    counter--;
+  }
+
+}
+
 //update counter
 let updateStars = function(elements) {
   if (counter <= 15) {
@@ -276,6 +284,7 @@ document.addEventListener("DOMContentLoaded", e => {
       valueCards.push(targetCard);
       //if we have two cards
       if (valueCards.length === 2) {
+        reduction(array=showCard);
         // access to events
         accessEvents = false;
 
