@@ -65,7 +65,7 @@ let createModalWindow = function() {
     contextText.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes.`
     inner.appendChild(contextText);
     let offerRestart= document.createElement('p');
-    offerRestart.innerHTML = ` If you want to play again, press x and after them press restart`;
+    offerRestart.innerHTML = ` If you want to play again, press x and after that press restart`;
     inner.appendChild(offerRestart);
     //console.log(div);
     let crossPress = document.querySelector('.btn');
