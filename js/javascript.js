@@ -14,6 +14,7 @@ let valueCards = [];
 let openCards = [];
 let matchCards = [];
 let counter = 0;
+let counterRating = 0;
 let myTimer;
 let accessEvents = true;
 
@@ -62,10 +63,10 @@ let createModalWindow = function() {
 
 
     let contextText = document.createElement('p');
-    contextText.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes.`
+    contextText.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes. You rating ${counterRating} stars`
     inner.appendChild(contextText);
     let offerRestart= document.createElement('p');
-    offerRestart.innerHTML = ` If you want to play again, press x and after that press restart`;
+    offerRestart.innerHTML = ` If you want to play again, press x and after that press restart. Additional information about rating: If you ended game for 15 steps, you've taken three stars. If you ended game for 25 steps, you've taken two stars. If you have more than 25 steps, you've taken only one star`;
     inner.appendChild(offerRestart);
     //console.log(div);
     let crossPress = document.querySelector('.btn');
@@ -187,6 +188,7 @@ function stopTimer(aTimer) {
 //update counter
 let updateStars = function(elements) {
   if (counter <= 15) {
+    counterRating = 3;
     stars.firstElementChild.firstElementChild.style.display = "block";
     stars.firstElementChild.nextElementSibling.firstElementChild.style.display =
       "block";
@@ -196,12 +198,15 @@ let updateStars = function(elements) {
     stars.firstElementChild.nextElementSibling.firstElementChild.style.display =
       "block";
     stars.lastElementChild.firstElementChild.style.display = "none";
+    counterRating = 2;
   } else if (counter > 25) {
     stars.firstElementChild.firstElementChild.style.display = "block";
     stars.firstElementChild.nextElementSibling.firstElementChild.style.display =
       "none";
     stars.lastElementChild.firstElementChild.style.display = "none";
+    counterRating = 1;
   }
+  return counterRating;
 };
 
 //if we have a two different cards
