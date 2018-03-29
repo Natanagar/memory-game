@@ -189,8 +189,8 @@ let updateStars = function(elements) {
   if (counter <= 15) {
     stars.firstElementChild.firstElementChild.style.display = "block";
     stars.firstElementChild.nextElementSibling.firstElementChild.style.display =
-      "none";
-    stars.lastElementChild.firstElementChild.style.display = "none";
+      "block";
+    stars.lastElementChild.firstElementChild.style.display = "block";
   } else if (counter > 15 && counter <= 25) {
     stars.firstElementChild.firstElementChild.style.display = "block";
     stars.firstElementChild.nextElementSibling.firstElementChild.style.display =
@@ -199,8 +199,8 @@ let updateStars = function(elements) {
   } else if (counter > 25) {
     stars.firstElementChild.firstElementChild.style.display = "block";
     stars.firstElementChild.nextElementSibling.firstElementChild.style.display =
-      "block";
-    stars.lastElementChild.firstElementChild.style.display = "block";
+      "none";
+    stars.lastElementChild.firstElementChild.style.display = "none";
   }
 };
 
