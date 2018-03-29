@@ -110,11 +110,7 @@ h1 {
 .off {
     pointer-events: none;
 }
-
-.timer {
-    margin-left: 20px;
-}
-
+/* div modal window*/
 .modal {
     /*display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -128,27 +124,25 @@ h1 {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
 .modal-content {
+    text-align: center;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    height: 150px;
-    text-align: center;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-span.btn{
+
+.btn{
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;   
 }
 
-span.btn:hover,
-span.btn:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.timer {
+    margin-left: 20px;
 }

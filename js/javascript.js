@@ -40,21 +40,39 @@ let cardDesk = [
 const numberOfCard = cardDesk.length;
 //create modal window
 let createModalWindow = function() {
-  let div = document.createElement("div");
-  div.classList = "modal";
-  let innerDiv = document.createElement("div");
-  div.appendChild(innerDiv);
-  let textModalWindow = document.createElement("div");
-  innerDiv.appendChild(textModalWindow);
-  textModalWindow.innerHTML = `You win!  ${counter} moves used, It took you ${
-    timer.innerHTML
-  } minutes. If you want to play again, press x`;
-  let closeWindow = document.createElement("span");
-  let closeIcon = document.createElement("i");
-  closeIcon.classList = "fa fa-times";
-  closeWindow.appendChild(closeIcon);
-  //console.log(div);
-  fieldGame.appendChild(div);
+  accessEvents = false;
+
+  //outer div
+  let div = document.createElement('div');
+    div.classList = "modal"
+
+    //inner div with content
+    let inner = document.createElement('div');
+    div.appendChild(inner);
+    inner.classList = "modal-content";
+    //button with awesome icon
+    let closeWindow = document.createElement('span');
+    closeWindow.classList = "btn";
+    let closeIcon = document.createElement('i')
+    closeIcon.classList = "fa fa-times";
+    closeIcon.setAttribute('aria-hidden', 'true');
+    closeWindow.appendChild(closeIcon);
+    inner.appendChild(closeWindow);
+    fieldGame.appendChild(div);
+
+
+    let contextText = document.createElement('p');
+    contextText.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes.`
+    inner.appendChild(contextText);
+    let offerRestart= document.createElement('p');
+    offerRestart.innerHTML = ` If you want to play again, press x and after them press restart`;
+    inner.appendChild(offerRestart);
+    //console.log(div);
+    let crossPress = document.querySelector('.btn');
+    crossPress.onclick = function(e){
+      removeModal();
+    }
+    return div;
 };
 
 //remove modal window
@@ -62,7 +80,16 @@ let createModalWindow = function() {
 let removeModal = function(element){
   let modalWindow = document.querySelector('.modal');
   modalWindow.style.display = "none";
+  accessEvents = true;
+  hideCards();
+  shuffle(cardDesk);
+  changeClassNameOfCard(elem = cardDesk);
+  console.log(cardDesk);
+  counter = 0;
+  startTimer(myTimer);
+  return accessEvents;
 }
+
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
 function shuffle(array) {
