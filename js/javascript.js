@@ -214,6 +214,7 @@ let differentCards = function(array = openCards) {
   //console.log(openCards);
   openCards[0].classList.remove("open", "show");
   openCards[1].classList.remove("open", "show");
+  removeOff();
   //delete all elements from elements array;
   openCards = [];
   accessEvents = true;
@@ -267,6 +268,7 @@ document.addEventListener("DOMContentLoaded", e => {
       let showCard = event.target;
       showCard.classList.add("open");
       showCard.classList.add("show");
+      showCard.classList.add("off");
 
       //add elements to array (elements and value of cards)
       openCards.push(showCard);
