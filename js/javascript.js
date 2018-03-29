@@ -59,7 +59,7 @@ let createModalWindow = function() {
 
 //remove modal window
 
-let removeModal = function(element…){
+let removeModal = function(element){
   let modalWindow = document.querySelector('.modal');
   modalWindow.style.display = "none";
 }
