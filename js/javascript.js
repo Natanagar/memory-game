@@ -3,7 +3,6 @@ const fieldGame = document.querySelector(".container");
 
 const scorePanel = document.querySelector(".score-panel");
 const listOfCard = document.querySelectorAll(".fa-star");
-//const rating = $('.fa-star');
 const moves = document.querySelector(".moves");
 const timer = document.querySelector(".timer");
 const restart = document.querySelector(".restart");
@@ -187,8 +186,12 @@ function stopTimer(aTimer) {
 
 //reduction of the steps to counter
 let reduction = function(array, counter){
-  if (array[0] === array[1]){
-    counter--;
+
+  if (array[0].classList == "off" && array[1].classList== "off"){
+    if(array[0] === array[1]){
+      counter--;
+    }
+
   }
 
 }
@@ -284,7 +287,7 @@ document.addEventListener("DOMContentLoaded", e => {
       valueCards.push(targetCard);
       //if we have two cards
       if (valueCards.length === 2) {
-        reduction(array=showCard);
+        reduction(openCards);
         // access to events
         accessEvents = false;
 

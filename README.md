@@ -1,20 +1,22 @@
-# Memory Game Project
+# Memory Game Cards
 
-## Table of Contents
+## Fork for Udacity Memory Game Cards
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## Instructions 
 
-## Instructions
+* [The rules of the game:](#instructions)
+Game's field contains sixteen cards. There are right matching pairs. You should find all pairs in as little moves as you can. If they match they stay opened. If not they are flipped back. Game finished when you all cards stay opened. 
+* Moves: When you open two cards you moves to increase for one.
+* Rating calculator: If you got winning combination less than 15 moves, you get three stars, if you doing less than 25 moves, you get two stars. If you doing more than 25 moves you get only one star. 
+After the game you've have alert with sequence of game. Gamer has got information about times, rating and moves.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## For developers:
+This is educational project. Algorhymt of the game has created in JS with ES6 syntax without backend;
+Game dependencies if any: nothing
+Resources used to develop the game if any: HTML5, CSS3, Bootstrap(v.4.6.1), Google fonts and Icons from Font-Awesome
+Suggestion: Play again and write me if you have seen some issues.
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
