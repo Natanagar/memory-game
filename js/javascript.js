@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", e => {
       valueCards.push(targetCard);
       //if we have two cards
       if (valueCards.length === 2) {
-        reduction(openCards);
+        //reduction(openCards);
         // access to events
         accessEvents = false;
 
