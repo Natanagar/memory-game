@@ -79,7 +79,8 @@ let createModalWindow = function() {
 
 let removeModal = function(element){
   let modalWindow = document.querySelector('.modal');
-  modalWindow.style.display = "none";
+  console.log(modalWindow);
+  modalWindow.remove();
   accessEvents = true;
   hideCards();
   shuffle(cardDesk);
@@ -254,6 +255,8 @@ let conditionOfWinnings = function(array) {
   }
 };
 
+
+
 document.addEventListener("DOMContentLoaded", e => {
   hideCards();
   startTimer();
@@ -279,7 +282,7 @@ document.addEventListener("DOMContentLoaded", e => {
       let showCard = event.target;
       showCard.classList.add("open");
       showCard.classList.add("show");
-      showCard.classList.add("off");
+      //showCard.classList.add("off");
 
       //add elements to array (elements and value of cards)
       openCards.push(showCard);
@@ -287,9 +290,11 @@ document.addEventListener("DOMContentLoaded", e => {
       valueCards.push(targetCard);
       //if we have two cards
       if (valueCards.length === 2) {
-        //reduction(openCards);
+
         // access to events
         accessEvents = false;
+        reduction(openCards);
+
 
         //add function callback (rating)
         let counterFunction = (function(elem = moves) {
