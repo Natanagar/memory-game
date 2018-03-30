@@ -7,8 +7,8 @@
 * [The rules of the game:](#instructions)
 Game's field contains sixteen cards. There are right matching pairs. You should find all pairs in as little moves as you can. If they match they stay opened. If not they are flipped back. Game finished when you all cards stay opened. 
 * Moves: When you open two cards you moves to increase for one.
-* Rating calculator: If you got winning combination less than 15 moves, you get three stars, if you doing less than 25 moves, you get two stars. If you doing more than 25 moves you get only one star. 
-After the game you've have alert with sequence of game. Gamer has got information about times, rating and moves.
+* Rating calculator: Rating calculation: if you reach the end of the game in less then 15 moves you get 3 stars, less then 25 moves - 2 stars, otherwise you get only 1 star.
+When the game is over you will see your results: time spent, moves and rating score, as well as a prompt to play one more time.
 
 
 
