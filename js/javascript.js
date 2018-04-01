@@ -226,7 +226,7 @@ let differentCards = function(array = openCards) {
   //console.log(openCards);
   openCards[0].classList.remove("open", "show");
   openCards[1].classList.remove("open", "show");
-  removeOff();
+  //removeOff();
   //delete all elements from elements array;
   openCards = [];
   accessEvents = true;
@@ -276,48 +276,65 @@ document.addEventListener("DOMContentLoaded", e => {
   };
 
   //open two card and comparsion those value
-  let openTwoCards = function(elements = deck.children, array = valueCards) {
+  let openTwoCards = function(elements){ //= deck.children, array = valueCards) {
     if (accessEvents == true) {
       //add class .open and .show
       let showCard = event.target;
+      console.log(showCard);
+      if(showCard.classList.contains('deck')){
+        console.log('You clicked matched card, event bubbled, skipping the event...');
+        event.stopPropagation();
+      } else if (showCard.classList.contains('fa')) {
+        console.log('You clicked matched card, event captured, skipping the event...');
+        event.stopPropagation();
+      } else {
+      console.log(`${showCard.classList} selected`);
       showCard.classList.add("open");
       showCard.classList.add("show");
-      //showCard.classList.add("off");
+
 
       //add elements to array (elements and value of cards)
       openCards.push(showCard);
       let targetCard = showCard.firstElementChild.getAttribute("class");
       valueCards.push(targetCard);
+
+
       //if we have two cards
-      if (valueCards.length === 2) {
-
-        // access to events
-        accessEvents = false;
-        reduction(openCards);
+      if (valueCards.length === 2){
 
 
-        //add function callback (rating)
-        let counterFunction = (function(elem = moves) {
-        counter++;
-        moves.innerHTML = counter;
-        //console.log(stars, counter);
-        updateStars();
-        })();
+        console.log(valueCards, openCards);
 
-        //compare two values card
-        let compareTwoCards = (function(array = valueCards) {
-          if (`${valueCards[0]}` === `${valueCards[1]}`) {
-            console.log("You win!");
-            valueCards = [];
-            setTimeout(sameCard, 1000);
-          } else {
-            console.log("You lost!");
-            valueCards = [];
-            setTimeout(differentCards, 1000);
+
+
+          // access to events
+          accessEvents = false;
+          reduction(openCards);
+
+
+          //add function callback (rating)
+          let counterFunction = (function(elem = moves) {
+          counter++;
+          moves.innerHTML = counter;
+          //console.log(stars, counter);
+          updateStars();
+          })();
+
+          //compare two values card
+          let compareTwoCards = (function(array = valueCards) {
+            if (`${valueCards[0]}` === `${valueCards[1]}`) {
+              console.log("You win!");
+              valueCards = [];
+              setTimeout(sameCard, 1000);
+            } else {
+              console.log("You lost!");
+              valueCards = [];
+              setTimeout(differentCards, 1000);
+              }
+            })();
           }
-        })();
+        }
       }
-    }
   };
 
   deck.addEventListener("click", openTwoCards);
