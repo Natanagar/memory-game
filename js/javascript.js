@@ -8,6 +8,9 @@ const timer = document.querySelector(".timer");
 const restart = document.querySelector(".restart");
 const deck = document.querySelector(".deck");
 const stars = document.querySelector(".stars");
+const modalWindow = document.querySelector(".modal");
+const textRestart = document.querySelector(".alert-text");
+const pressCross = document.querySelector(".btn");
 //empties arrays for elements and value of card
 let valueCards = [];
 let openCards = [];
@@ -16,6 +19,7 @@ let counter = 0;
 let counterRating = 0;
 let myTimer;
 let accessEvents = true;
+
 
 // List of all cards
 let cardDesk = [
@@ -39,45 +43,26 @@ let cardDesk = [
 
 const numberOfCard = cardDesk.length;
 //create modal window
-let createModalWindow = function() {
+let createModalWindow = function(elements = [textRestart, modalWindow, pressCross]) {
   accessEvents = false;
-
-  //outer div
-  let div = document.createElement('div');
-    div.classList = "modal"
-
-    //inner div with content
-    let inner = document.createElement('div');
-    div.appendChild(inner);
-    inner.classList = "modal-content";
-    //button with awesome icon
-    let closeWindow = document.createElement('span');
-    closeWindow.classList = "btn";
-    let closeIcon = document.createElement('i')
-    closeIcon.classList = "fa fa-times";
-    closeIcon.setAttribute('aria-hidden', 'true');
-    closeWindow.appendChild(closeIcon);
-    inner.appendChild(closeWindow);
-    fieldGame.appendChild(div);
-
-
-    let contextText = document.createElement('p');
-    contextText.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes. You rating ${counterRating} stars`
-    inner.appendChild(contextText);
-    let offerRestart= document.createElement('p');
-    offerRestart.innerHTML = ` If you want to play again, press x and after that press restart. Additional information about rating: If you ended game for 15 steps, you've taken three stars. If you ended game for 25 steps, you've taken two stars. If you have more than 25 steps, you've taken only one star`;
-    inner.appendChild(offerRestart);
-    //console.log(div);
-    let crossPress = document.querySelector('.btn');
-    crossPress.onclick = function(e){
-      removeModal();
+    textRestart.innerHTML =`You win!  ${counter} moves used, It took you ${timer.innerHTML} minutes. You rating ${counterRating} stars`;
+    modalWindow.style.display="block";
+    pressCross.onclick = function(event, elements){
+      modalWindow.style.display ="none";
+      accessEvents = true;
+      hideCards();
+      shuffle(cardDesk);
+      changeClassNameOfCard(elem = cardDesk);
+      console.log(cardDesk);
+      counter = 0;
+      startTimer(myTimer);
+      return accessEvents;
     }
-    return div;
 };
 
 //remove modal window
 
-let removeModal = function(element){
+/*let removeModal = function(element){
   let modalWindow = document.querySelector('.modal');
   console.log(modalWindow);
   modalWindow.remove();
@@ -89,7 +74,7 @@ let removeModal = function(element){
   counter = 0;
   startTimer(myTimer);
   return accessEvents;
-}
+}*/
 
 
 //array from cards sort with mathRandom (Fisher–Yates Shuffle)
@@ -147,13 +132,13 @@ let removeMatch = function(elements) {
     card.classList.remove("match");
   }
 };
-
 let removeOff = function(elements) {
-  let offElements = document.querySelectorAll(".off");
-  for (offElement of offElements) {
-    offElement.classList.remove("off");
+  let classRemoves = Array.from(document.querySelectorAll(".off"));
+  for(classRemove of classRemoves){
+    classRemove.classList.remove("off");
   }
-};
+}
+
 let hideCards = function(elements) {
   moves.innerHTML = "0";
   removeOpen();
@@ -242,7 +227,7 @@ let sameCard = function(array = openCards) {
   //delete all elements from elements array;
   openCards = [];
   accessEvents = true;
-
+  //console.log(matchCards);
   //function winner;
   conditionOfWinnings(matchCards);
 };
@@ -250,6 +235,7 @@ let sameCard = function(array = openCards) {
 let conditionOfWinnings = function(array) {
   //console.log(i);
   if (array.length == 16) {
+    matchCards = [];
     stopTimer(myTimer);
     createModalWindow();
   }
@@ -280,15 +266,15 @@ document.addEventListener("DOMContentLoaded", e => {
     if (accessEvents == true) {
       //add class .open and .show
       let showCard = event.target;
-      console.log(showCard);
+      //console.log(showCard);
       if(showCard.classList.contains('deck')){
-        console.log('You clicked matched card, event bubbled, skipping the event...');
+        //console.log('You clicked matched card, event bubbled, skipping the event...');
         event.stopPropagation();
       } else if (showCard.classList.contains('fa')) {
-        console.log('You clicked matched card, event captured, skipping the event...');
+        //console.log('You clicked matched card, event captured, skipping the event...');
         event.stopPropagation();
       } else {
-      console.log(`${showCard.classList} selected`);
+      //console.log(`${showCard.classList} selected`);
       showCard.classList.add("open");
       showCard.classList.add("show");
 
@@ -301,13 +287,8 @@ document.addEventListener("DOMContentLoaded", e => {
 
       //if we have two cards
       if (valueCards.length === 2){
-
-
-        console.log(valueCards, openCards);
-
-
-
-          // access to events
+        //console.log(valueCards, openCards);
+         // access to events
           accessEvents = false;
           reduction(openCards);
 
