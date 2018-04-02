@@ -273,6 +273,8 @@ document.addEventListener("DOMContentLoaded", e => {
       } else if (showCard.classList.contains('fa')) {
         //console.log('You clicked matched card, event captured, skipping the event...');
         event.stopPropagation();
+      } else if (showCard.classList.contains('show')) {
+        event.stopPropagation();
       } else {
       //console.log(`${showCard.classList} selected`);
       showCard.classList.add("open");
