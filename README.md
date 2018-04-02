@@ -14,7 +14,7 @@ When the game is over you will see your results: time spent, moves and rating sc
 
 ## For developers:
 This is educational project. Algorhymt of the game has been created in JS with ES6 syntax;
-* Game dependencies if any: nothing
+* Game dependencies if any: Font-Awesome and Google Fonts
 * Resources used to develop the game if any: HTML5, CSS3, Bootstrap(v.4.6.1), Google fonts and Icons from FontAwesome
 * Suggestion: Play again and write me if you have seen some issues.
 
