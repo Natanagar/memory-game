@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", e => {
   };
 
   //open two card and comparsion those value
-  let openTwoCards = function(elements){ //= deck.children, array = valueCards) {
+  let openTwoCards = function(event, elements){ //= deck.children, array = valueCards) {
     if (accessEvents == true) {
       //add class .open and .show
       let showCard = event.target;
