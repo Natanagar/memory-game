@@ -50,11 +50,14 @@ let createModalWindow = function(elements = [textRestart, modalWindow, pressCros
     pressCross.onclick = function(event, elements){
       modalWindow.style.display ="none";
       accessEvents = true;
+      removeOff();
       hideCards();
       shuffle(cardDesk);
       changeClassNameOfCard(elem = cardDesk);
       console.log(cardDesk);
       counter = 0;
+      timer.innerHTML = "00.00";
+      updateStars();
       startTimer(myTimer);
       return accessEvents;
     }
