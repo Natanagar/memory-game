@@ -254,12 +254,13 @@ document.addEventListener("DOMContentLoaded", e => {
   let shuffleDeck = function(e, elem = cardDesk) {
     stopTimer(myTimer);
     startTimer(myTimer);
-    console.log("Hura!");
-    moves.innerHTML = "0";
+    //console.log("Hura!");
+    moves.innerHTML = "00:00";
     counter = 0;
     updateStars();
     removeMatch();
     removeShow();
+    removeOpen();
     removeOff();
     changeClassNameOfCard(cardDesk);
   };
