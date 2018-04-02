@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", e => {
   let openTwoCards = function(event, elements){ //= deck.children, array = valueCards) {
     if (accessEvents == true) {
       //add class .open and .show
-      let showCard = event.target;
+      let showCard = event.target||event.srcElement;
       //console.log(showCard);
       if(showCard.classList.contains('deck')){
         //console.log('You clicked matched card, event bubbled, skipping the event...');
